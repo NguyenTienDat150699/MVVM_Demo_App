@@ -7,6 +7,9 @@
         xmlns:viewmodel="clr-namespace:ViewModel;assembly=ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <viewmodel:StudentRepoViewModel></viewmodel:StudentRepoViewModel>
+    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"/>
@@ -18,22 +21,22 @@
         </Grid.RowDefinitions>
         <StackPanel>
             <TextBlock x:Name="textBlockID" TextWrapping="Wrap" Text="Identity:" FontWeight="Bold" FontSize="14" Margin="10,8,0,0"/>
-            <TextBox Height="23" TextWrapping="Wrap" Text="TextBox" FontSize="14" IsReadOnly="True" Margin="10,0,0,0"/>
+            <TextBox Height="23" TextWrapping="Wrap" Text="{Binding ElementName=dataGridStudentRepo, Path=SelectedItem.Identity}" FontSize="14" IsReadOnly="True" Margin="10,0,0,0"/>
             <TextBlock x:Name="textBlockFullname" TextWrapping="Wrap" Text="Full name:" FontWeight="Bold" FontSize="14" Margin="10,8,0,0"/>
-            <TextBox Height="23" TextWrapping="Wrap" Text="TextBox" FontSize="14" Margin="10,0,0,0"/>
+            <TextBox Height="23" TextWrapping="Wrap" Text="{Binding ElementName=dataGridStudentRepo, Path=SelectedItem.FullName}" FontSize="14" Margin="10,0,0,0"/>
             <TextBlock x:Name="textBlockBirth" TextWrapping="Wrap" Text="Birthday:" FontWeight="Bold" FontSize="14" Margin="10,8,0,0"/>
-            <DatePicker FontSize="14" Margin="10,0,0,0"/>
+            <DatePicker FontSize="14" Margin="10,0,0,0" SelectedDate="{Binding ElementName=dataGridStudentRepo, Path=SelectedItem.BirthDate, Mode=OneWay}"/>
         </StackPanel>
         <StackPanel Grid.Column="1">
             <Button x:Name="buttonCreate" Content="Create" FontSize="14" FontWeight="Bold" Margin="10,15,10,0" Height="35"/>
             <Button x:Name="buttonUpdate" Content="Update" FontSize="14" FontWeight="Bold" Margin="10,15,10,0" Height="35"/>
             <Button x:Name="buttonDelete" Content="Delete" FontSize="14" FontWeight="Bold" Margin="10,15,10,0" Height="35"/>
         </StackPanel>
-        <DataGrid Grid.Row="1" Grid.ColumnSpan="2" Margin="10" IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid x:Name="dataGridStudentRepo" ItemsSource="{Binding Path=Students, Mode=OneWay}" Grid.Row="1" Grid.ColumnSpan="2" Margin="10" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" Header="Identity"/>
-                <DataGridTextColumn Binding="{x:Null}" Header="Full name"/>
-                <DataGridTextColumn Binding="{x:Null}" Header="Birthday"/>
+                <DataGridTextColumn Binding="{Binding Identity}" Header="Identity"/>
+                <DataGridTextColumn Binding="{Binding FullName}" Header="Full name"/>
+                <DataGridTextColumn Binding="{Binding BirthDate}" Header="Birthday"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

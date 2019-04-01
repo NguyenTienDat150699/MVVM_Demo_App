@@ -15,7 +15,8 @@ namespace DataAccessLayer
         private OleDbConnection connection;
         public StudentDAL()
         {
-            connection = new OleDbConnection("");
+            connection = new OleDbConnection("Provider = Microsoft.Jet.OLEDB.4.0; " +
+                    "Data Source=Student.mdb;Persist Security Info=True");
         }
         public bool CreateItem(StudentModel item)
         {
@@ -71,7 +72,7 @@ namespace DataAccessLayer
                 if (connection.State != ConnectionState.Open)
                     connection.Open();
                 OleDbCommand command = new OleDbCommand(
-                    "SELETE * FROM Student ORDER BY Identity ASC", connection);
+                    "SELECT * FROM Student ORDER BY Identity ASC", connection);
                 OleDbDataAdapter oleDbDataAdapter = new OleDbDataAdapter(command);
                 oleDbDataAdapter.Fill(dataTable);
             }

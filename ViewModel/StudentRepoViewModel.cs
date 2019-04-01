@@ -19,6 +19,7 @@ namespace ViewModel
         public StudentRepoViewModel()
         {
             studentDAL = new StudentDAL();
+            students = new ObservableCollection<StudentModel>();
             LoadStudentRepo();
             CreateCommand = new RelayCommand<StudentModel>(
                 param => true,
