@@ -20,6 +20,15 @@ namespace ViewModel
         {
             studentDAL = new StudentDAL();
             LoadStudentRepo();
+            CreateCommand = new RelayCommand<StudentModel>(
+                param => true,
+                param => CreateNewStudent(param));
+            DeleteCommand = new RelayCommand<StudentModel>(
+                param => param != null,
+                param => DeleteCurStudent(param));
+            UpdateCommand = new RelayCommand<StudentModel>(
+                param => param != null,
+                param => UpdateCurStudent(param));
         }
         public ObservableCollection<StudentModel> Students
         {
