@@ -42,6 +42,8 @@ namespace ViewModel
 
         private void CreateNewStudent (StudentModel student)
         {
+            if (student.FullName == "")
+                return;
             studentDAL.CreateItem(student);
             LoadStudentRepo();
         }
@@ -52,6 +54,8 @@ namespace ViewModel
         }
         private void UpdateCurStudent(StudentModel student)
         {
+            if (student.FullName == "")
+                return;
             studentDAL.UpdateItem(student);
             LoadStudentRepo();
         }

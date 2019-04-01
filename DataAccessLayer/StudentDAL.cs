@@ -96,6 +96,9 @@ namespace DataAccessLayer
                 OleDbCommand command = new OleDbCommand(
                     "UPDATE Student SET FullName = @fullname, BirthDate = @birthdate " +
                     "WHERE Identity = @identity", connection);
+                command.Parameters.Add("@fullname", OleDbType.BSTR).Value = item.FullName;
+                command.Parameters.Add("@birthdate", OleDbType.BSTR).Value = item.BirthDate;
+                command.Parameters.Add("@identity", OleDbType.Numeric).Value = item.Identity;
                 command.ExecuteNonQuery();
             }
             catch(Exception ex)

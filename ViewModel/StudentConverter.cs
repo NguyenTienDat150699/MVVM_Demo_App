@@ -14,9 +14,15 @@ namespace ViewModel
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             StudentModel student = new StudentModel();
-            student.Identity = int.Parse(values[0].ToString());
-            student.FullName = values[1].ToString();
-            student.BirthDate = values[2].ToString();
+            if (values[0] != null && values[0].ToString() != "")
+                student.Identity = int.Parse(values[0].ToString());
+
+            if (values[1] != null && values[1].ToString() != "")
+                student.FullName = values[1].ToString();
+
+            if (values[2] != null && values[2].ToString() != "")
+                student.BirthDate = values[2].ToString();
+
             return student;
         }
 

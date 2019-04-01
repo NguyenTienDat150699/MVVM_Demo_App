@@ -12,7 +12,11 @@ namespace Model
         private string fullName;
         private DateTime birthDate;
 
-        public StudentModel() { }
+        public StudentModel()
+        {
+            identity = 0;
+            fullName = "";
+        }
         public int Identity
         {
             get { return identity; }
